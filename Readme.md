@@ -109,6 +109,8 @@
      "runMode": 2,
   }
 
+## for Iframes in html
+    https://www.npmjs.com/package/cypress-iframe
 # Folder Structure:-
 
 ## 1. Fixtures:
