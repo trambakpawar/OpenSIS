@@ -35,13 +35,16 @@ export class portal {
     deletenote() {
         cy.iframe('.responsive-iframe').find(notepage).should("have.text", "Portal Notes").eq(0).click()
         cy.enter('.responsive-iframe').then(getBody => {
-            getBody().find(close).then(res => {
-
-                cy.log('element present')
-                getBody().find(close).click()
-                getBody().find(okbutton).click()
+            getBody().within(() => {
+                if (cy.find(close)) {
+                    cy.log('element present')
+                    getBody().find(close).click()
+                    getBody().find(okbutton).click()
+                } else {
+                    cy.log("element not present")
+                }
             })
-            cy.log("element not present")
+
 
 
             /*   getBody().find(close).should('be.visible').click()
