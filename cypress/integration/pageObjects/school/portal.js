@@ -14,22 +14,16 @@ export class portal {
 
     addnote() {
         cy.iframe('.responsive-iframe').find(notepage).should("have.text", "Portal Notes").eq(0).click()
-        cy.iframe('.responsive-iframe').find(close).should("be.visible")
-        cy.iframe('.responsive-iframe').find(close).click({ force: true })
-        cy.iframe('.responsive-iframe').find(okbutton).click()
-        cy.wait(3000)
-        cy.iframe('.responsive-iframe').find('.form-control').eq(0).type(pdata.title)
-        cy.iframe('.responsive-iframe').find('.form-control').eq(1).type(pdata.note)
-        cy.iframe('.responsive-iframe').find('.form-control').eq(2).type(pdata.sort)
-        cy.iframe('.responsive-iframe').find('.form-control').eq(3).type(pdata.startdate)
-        cy.iframe('.responsive-iframe').find('.form-control').eq(3).click()
-        cy.iframe('.responsive-iframe').find('.form-control').eq(4).click({ force: true })
-        cy.iframe('.responsive-iframe').find('.form-control').eq(4).type(pdata.enddate)
+        cy.iframe('.responsive-iframe').find('input[name="values[new][TITLE]"]').eq(0).type(pdata.title)
+        cy.iframe('.responsive-iframe').find('input[name="values[new][CONTENT]"]').eq(0).type(pdata.note)
+        cy.iframe('.responsive-iframe').find('input[name="values[new][SORT_ORDER]"]').eq(0).type(pdata.sort)
+        cy.iframe('.responsive-iframe').find('input[id="date_0"]').eq(0).type(pdata.startdate)
+        cy.iframe('.responsive-iframe').find('input[id="date_0"]').eq(0).click()
+        cy.iframe('.responsive-iframe').find('input[id="date_-1"]').eq(0).click({ force: true })
+        cy.iframe('.responsive-iframe').find('input[id="date_-1"]').eq(0).type(pdata.enddate)
 
         cy.wait(1000)
-
         cy.iframe('.responsive-iframe').find(savebutton).should("be.visible").click()
-
     }
 
     deletenote() {
